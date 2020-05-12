@@ -42,38 +42,37 @@
   }
 
   function renderRepoDetails(repo, innerul) {
-    {
+    let li;
       // insert repo name in a li which includes a label tag and anchor tag
-      let li = createAndAppend('li', innerul);
+      li = createAndAppend('li', innerul);
       createAndAppend('label', li, { text: `Repository : `, class: "label"});
       createAndAppend('a', li, { text: `${repo.name}  `, class: "info", href:"#"});  
-    }
+    
   
     // insert repo description 
     if(repo.description === null){
-      let li = createAndAppend('li', innerul);
+      li = createAndAppend('li', innerul);
       createAndAppend('label', li, { text: `Description : `, class: "label"});
       createAndAppend('p', li, { text: `${repo.name}  `, class: "info"});
     }else{
-      let li = createAndAppend('li', innerul);
+      li = createAndAppend('li', innerul);
       createAndAppend('label', li, { text: `Description : `, class: "label"});
       createAndAppend('p', li, { text: `${repo.description}  `, class: "info"});
     }
-    {
+    
       // insert repo forks
-      let li = createAndAppend('li', innerul);
+      li = createAndAppend('li', innerul);
       createAndAppend('label', li, { text: `Forks : `, class: "label"});
       createAndAppend('a', li, { text: `${repo.forks}  `, class: "info"});
-    }
+    
 
-    {
+    
       // insert repo updated date 
-      let li = createAndAppend('li', innerul);
+      li = createAndAppend('li', innerul);
       createAndAppend('label', li, { text: `Updated : `, class: "label"});
       let date = new Date(repo.updated_at).toLocaleDateString("sq-AL",{ year: 'numeric', month: '2-digit', day: '2-digit', hour:'2-digit', minute:'2-digit', second:'2-digit' });
 
       createAndAppend('a', li, { text: `${date}  `, class: "info"});
-    }
 
   }
 
