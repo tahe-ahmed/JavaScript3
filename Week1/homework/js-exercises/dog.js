@@ -8,7 +8,7 @@ function addImg(imgSource) {
     li.appendChild(img);
     ul.appendChild(li);
 }
-function getDataXML() {
+function setDogImageUsingXML() {
     const xhr = new XMLHttpRequest();
     xhr.onload = function(){ 
         if (xhr.status < 400) {
@@ -17,18 +17,18 @@ function getDataXML() {
             addImg(response.message);
         } else {
             // handling response error
-            console.log(`Error: ${xhr.status}`);
+            console.error(`Error: ${xhr.status}`);
             }
         };
 
     xhr.onerror = function(){
         //handling network error
-        onsole.log('something went wrong');
+        console.error('something went wrong');
     }
     xhr.open('GET', url);
     xhr.send();
 }
-function getDataAxios() {
+function setDogImageUsingAxios() {
 
     axios.get(url)
     .then(function (response) {
@@ -40,10 +40,10 @@ function getDataAxios() {
     })
     .catch(function (error) {
         // log the error
-        console.log(error);
+        console.error(error);
     });
 }
 
-document.getElementById('buttonOne').addEventListener("click", getDataXML);
-document.getElementById('buttonTwo').addEventListener("click", getDataAxios);
+document.getElementById('xmlButton').addEventListener("click", setDogImageUsingXML);
+document.getElementById('axiosButton').addEventListener("click", setDogImageUsingAxios);
 
