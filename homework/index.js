@@ -18,8 +18,8 @@
     xhr.onload = () => {
       if (xhr.status >= 200 && xhr.status <= 299) {
         // sort the response using pre-defined function
-        let sortedResponed = getSortByName(xhr.response);
-        cb(null, sortedResponed);
+        let sortedResponse = getSortByName(xhr.response);
+        cb(null, sortedResponse);
       } else {
         cb(new Error(`Network error: ${xhr.status} - ${xhr.statusText}`));
       }
