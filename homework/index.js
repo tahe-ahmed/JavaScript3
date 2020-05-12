@@ -42,23 +42,18 @@
   }
 
   function renderRepoDetails(repo, innerul) {
-    let li;
+      let li;
       // insert repo name in a li which includes a label tag and anchor tag
       li = createAndAppend('li', innerul);
       createAndAppend('label', li, { text: `Repository : `, class: "label"});
       createAndAppend('a', li, { text: `${repo.name}  `, class: "info", href:"#"});  
     
   
-    // insert repo description 
-    if(repo.description === null){
+      // insert repo description 
       li = createAndAppend('li', innerul);
       createAndAppend('label', li, { text: `Description : `, class: "label"});
-      createAndAppend('p', li, { text: `${repo.name}  `, class: "info"});
-    }else{
-      li = createAndAppend('li', innerul);
-      createAndAppend('label', li, { text: `Description : `, class: "label"});
-      createAndAppend('p', li, { text: `${repo.description}  `, class: "info"});
-    }
+      (repo.description === null) ? createAndAppend('p', li, { text: `${repo.name}  `, class: "info"}) : createAndAppend('p', li, { text: `${repo.description}  `, class: "info"});
+    
     
       // insert repo forks
       li = createAndAppend('li', innerul);
