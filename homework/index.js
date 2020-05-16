@@ -52,7 +52,8 @@
       // insert repo description 
       li = createAndAppend('li', innerul);
       createAndAppend('label', li, { text: `Description : `, class: "label"});
-      (repo.description === null) ? createAndAppend('p', li, { text: `${repo.name}  `, class: "info"}) : createAndAppend('p', li, { text: `${repo.description}  `, class: "info"});
+      let descText = (repo.description === null ? repo.name : repo.description);
+      createAndAppend('p', li, { text: `${descText}  `, class: "info"});
     
     
       // insert repo forks
