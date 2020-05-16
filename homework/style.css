@@ -1,14 +1,33 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Balsamiq+Sans:wght@400;700&display=swap');
+
 .alert-error {
   color: rgb(255, 0, 0);
   background-color: rgb(255, 146, 146);
   list-style: none;
   padding: 25px 30px;
 }
-
-.title{
-  background-color: royalblue;
-  padding: 25px 30px;
-  margin: auto;
+#root{
+  margin: 3% 9%;
+  font-family: 'Balsamiq Sans', cursive;
+}
+.header{
+  display: flex;
+  flex-wrap: wrap;
+  background: skyblue;
+  padding: 9px 24px;
+  /* margin: -3px; */
+  margin: 14px 0px;
+}
+.header-title{
+  font-size: 28px;
+    margin: auto;
+}
+.dropDownList{
+  border: darkgrey;
+  height: 28px;
+  width: auto;
+  font-size: 12px;
 }
 .rep-item{
   display: flex;
@@ -18,11 +37,67 @@
   border: 2px solid rgb(111, 111, 111);
   padding: 10px 20px;
   list-style: none;
-  font-size: large;
+  font-size: 10px;
 }
 .info{
   display: inline;
 }
 .label{
   font-weight: bold;
+}
+.contributor-img{
+  width: 50px;
+}
+.main-container{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+.repo-container{
+  list-style: none;
+  height: max-content;
+  background: #F2F2F2;
+  border: 1px solid #ccc;
+  box-shadow: 1px 1px 2px #fff inset, -1px -1px 2px #fff inset;
+  border-radius: 3px/6px;
+  width: 55%;
+  padding: 7px 10px;
+}
+.contribution-names{
+  padding: 17px 16px;
+  margin-left: auto;
+      /* border: 0px blue; */
+    background: silver;
+    border-radius: 24px;
+} 
+.contrib-name{
+  list-style: none;
+  text-decoration: none;
+  color: black;
+  padding: 17px 16px;
+  margin: 0px 3px;
+}
+.contributorCard{
+  text-align: left;
+    display: flex;
+    margin: 13px 0px;
+}
+.contributors-container{
+  width: 38%;
+  height: max-content;
+    background: #F2F2F2;
+    border: 1px solid #ccc;
+    box-shadow: 1px 1px 2px #fff inset, -1px -1px 2px #fff inset;
+    border-radius: 3px/6px;
+    /* width: 29%; */
+    padding: 7px 10px;
+}
+
+@media (max-width: 768px){
+  .contributors-container{
+    width: -webkit-fill-available;
+  }
+  .repo-container{
+    width: -webkit-fill-available;
+  }
 }
