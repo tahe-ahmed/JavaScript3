@@ -11,7 +11,7 @@
   }
 
   function fetchJSON(url) {
-    return fetch(url).then(response =>{
+     return fetch(url).then(response =>{
       if (!response.ok) throw new Error(response.status);
       // console.log(response.json());
       return response.json();
@@ -83,6 +83,14 @@
   
   }
 
+  function renderRepoInfo(arrayOfData, index, reposContainer, contributorsContainer ){
+    renderRepoDetails(arrayOfData[index], reposContainer);
+      
+    fetchJSON(arrayOfData[index].contributors_url).then(listOfContributors =>
+      rendercontributors(listOfContributors, contributorsContainer),
+    );
+  }
+
   function main(url) {
     const header = document.querySelector('header');
     const reposContainer = document.querySelector('.repo-container');
@@ -92,52 +100,31 @@
 
     // Get pending promise 
     const pendingPromise = fetchJSON(url);
-    // console.log(pendingPromise);
 
-    // resolve the promise and fill up the select elemet with options 
-    pendingPromise.then(repoArr =>{ 
-      // console.log(pendingPromise);
+    // resolve the promise and fill up the page with suitable data
+    pendingPromise.then(repoArr =>{
+      // console.log(repoArr);
+      // sort the data fetched from the API
       getSortByName(repoArr);
       repoArr.forEach((repo,index) =>{
         createAndAppend('option', dropDownList, {
           text: repo.name,
           value: index
         })
-      })
-      
-      // default repo info
-      pendingPromise
-          .then(repoArr => {
-            renderRepoDetails(repoArr[0], reposContainer)
-          });
-      // default contributors info
-      pendingPromise
-          .then(repoArr => {
-            fetchJSON(repoArr[0].contributors_url).then(listOfContributors =>
-              rendercontributors(listOfContributors, contributorsContainer),
-              // console.log(listOfContributors);
-        );
-      })
+      });
+
+      //render the first default repo and its contributors info
+      renderRepoInfo(repoArr, 0,reposContainer,contributorsContainer );
 
       // onselect change the default repo and contributors info
       dropDownList.addEventListener("change", (e) => {
         const index = e.target.value;
         reposContainer.textContent = '';
         contributorsContainer.textContent = '';
-        pendingPromise
-          .then(repoArr => {
-            renderRepoDetails(repoArr[index], reposContainer)}
-            )
-            pendingPromise.then(repoArr => {
-            fetchJSON(repoArr[index].contributors_url).then(listOfContributors =>
-              rendercontributors(listOfContributors, contributorsContainer),
-              // console.log(listOfContributors);
-            );
+        renderRepoInfo(repoArr, index,reposContainer,contributorsContainer );
+        });
 
-          })
-          
-      });
-    })
+    });
   }
 
   const HYF_REPOS_URL =
